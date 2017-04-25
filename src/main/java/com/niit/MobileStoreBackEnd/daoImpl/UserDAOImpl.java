@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.niit.MobileStoreBackEnd.dao.UserDAO;
 import com.niit.MobileStoreBackEnd.domain.User;
 
-
+@Repository("userDAO")
 @Transactional
 public class UserDAOImpl implements UserDAO
 {
@@ -24,10 +24,10 @@ public class UserDAOImpl implements UserDAO
 	
 	//write user-defined constructor with one parameter i.e. sessionFactory
 	
-	public UserDAOImpl(SessionFactory sessionFactory)
+/*public UserDAOImpl(SessionFactory sessionFactory)
 	{
 		this.sessionFactory=sessionFactory;
-	}
+	}*/
 	
 	//"save" method creates a record in User table
 	//if the record is created successfully, return true, else false

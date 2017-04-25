@@ -19,7 +19,7 @@ public class App
         SessionFactory sf=con.getSessionFactory(ds);
         System.out.println( "Hello World!" );
         User u=new User();
-        UserDAO us=con.getUserDAO(sf);
+     //   UserDAO us=con.getUserDAO(sf);
         System.out.println("main method ends...");
     }
 }

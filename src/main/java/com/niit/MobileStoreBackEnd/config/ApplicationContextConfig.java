@@ -2,6 +2,7 @@ package com.niit.MobileStoreBackEnd.config;
 
 import com.niit.MobileStoreBackEnd.dao.UserDAO;
 import com.niit.MobileStoreBackEnd.daoImpl.UserDAOImpl;
+import com.niit.MobileStoreBackEnd.domain.Category;
 import com.niit.MobileStoreBackEnd.domain.User;
 
 import java.util.Properties;
@@ -19,12 +20,12 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@ComponentScan(basePackages="com.niit")
+@ComponentScan("com.niit")
 @EnableTransactionManagement
 
 public class ApplicationContextConfig 
 {
-	@Autowired
+	
 	@Bean(name="datasource")
 	public DataSource getH2DataSource()
 	{
@@ -41,7 +42,7 @@ public class ApplicationContextConfig
 		Properties p=new Properties();
 		p.put("hibernate.show_sql","true");
 		p.put("hibernate.dialect","org.hibernate.dialect.H2Dialect");
-		p.put("hibernate.hbm2ddl.auto","update");
+	//	p.put("hibernate.hbm2ddl.auto","update");
 		return p;
 	}
 	
@@ -52,7 +53,8 @@ public class ApplicationContextConfig
 		LocalSessionFactoryBuilder sessionBuilder=new LocalSessionFactoryBuilder(datasource);
 		sessionBuilder.addProperties(getHibernateProperties());
 		sessionBuilder.addAnnotatedClass(User.class);
-		sessionBuilder.scanPackages("com.niit");
+	//	sessionBuilder.addAnnotatedClass(Category.class);
+		//sessionBuilder.scanPackages("com.niit");
 		return sessionBuilder.buildSessionFactory();
 	}
 	
@@ -64,10 +66,10 @@ public class ApplicationContextConfig
 		return tm;
 	}
 	
-@Autowired
+/*@Autowired
 	@Bean(name="userDAO")
 	public UserDAO getUserDAO(SessionFactory sessionFactory)
 	{
 		return new UserDAOImpl(sessionFactory);
-	} 
+	} */
 }

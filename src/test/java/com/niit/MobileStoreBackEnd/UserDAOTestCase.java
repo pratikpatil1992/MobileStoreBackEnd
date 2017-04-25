@@ -12,11 +12,14 @@ import com.niit.MobileStoreBackEnd.domain.User;
 
 public class UserDAOTestCase 
 {
-	@Autowired static AnnotationConfigApplicationContext context;
+	@Autowired 
+	static AnnotationConfigApplicationContext context;
+	@Autowired 
+	static User user;
+	@Autowired 
+	static UserDAO userDAO;
 	
-	@Autowired static UserDAO userDAO;
-	
-    @Autowired static User user;
+    
 	
 	//The above objects need to be initilialised
 	
@@ -26,16 +29,17 @@ public class UserDAOTestCase
 	public static void initialize()
 	{
 		context=new AnnotationConfigApplicationContext();
-		context.scan("com.niit");
+		context.scan("com.niit.MobileStoreBackEnd");
 		context.refresh();
-		
-		//get userDAO from context
-		
-		userDAO=(UserDAO) context.getBean("userDAO");
 		
 		//get the user from context
 		
 		user=(User)context.getBean("user");
+		//get userDAO from context
+		
+		userDAO=(UserDAO) context.getBean("userDAO");
+		
+		
 	}
 	
 	@Test
