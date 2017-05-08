@@ -21,17 +21,6 @@ public class UserDAOImpl implements UserDAO
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	
-	//write user-defined constructor with one parameter i.e. sessionFactory
-	
-/*public UserDAOImpl(SessionFactory sessionFactory)
-	{
-		this.sessionFactory=sessionFactory;
-	}*/
-	
-	//"save" method creates a record in User table
-	//if the record is created successfully, return true, else false
-	
 	public boolean save(User user) 
 	{
 		System.out.println("hi");
@@ -69,18 +58,17 @@ public class UserDAOImpl implements UserDAO
 
 	public boolean validate(String id, String password)
 	{
-		Query query=sessionFactory.getCurrentSession().createQuery("from user where id=? and password=?");
-		query.setString(1,id);     //index starts from zero => will get an exception once
-		query.setString(2,password);
+		Query query=sessionFactory.getCurrentSession().createQuery("from User where id=? and password=?");
+		query.setString(0,id);     //index starts from zero => will get an exception once
+		query.setString(1,password);
 		//in the user table, with this id and password, there will be one or zero records
 		//i.e. unique result method will return object if a row exists, or else null
 		if(query.uniqueResult()==null)
 			return false;    //no row exists i.e. invalid credentials
 		else
-			return true;     //row exist i.e. valid credentials
+			return true;     //row exists i.e. valid credentials
 	}
-
-	public List<User> list() 
+	public List<User> list()
 	{
 		return sessionFactory.getCurrentSession().createQuery("from user").list();
 	}

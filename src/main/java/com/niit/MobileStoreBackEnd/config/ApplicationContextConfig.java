@@ -1,8 +1,8 @@
 package com.niit.MobileStoreBackEnd.config;
 
-import com.niit.MobileStoreBackEnd.dao.UserDAO;
-import com.niit.MobileStoreBackEnd.daoImpl.UserDAOImpl;
+
 import com.niit.MobileStoreBackEnd.domain.Category;
+import com.niit.MobileStoreBackEnd.domain.Product;
 import com.niit.MobileStoreBackEnd.domain.User;
 
 import java.util.Properties;
@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -25,37 +26,39 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 public class ApplicationContextConfig 
 {
-	
-	@Bean(name="datasource")
+	@Autowired
+	@Bean(name="dataSource")
 	public DataSource getH2DataSource()
 	{
-		BasicDataSource ds=new BasicDataSource();
+		BasicDataSource ds = new BasicDataSource();
 		ds.setDriverClassName("org.h2.Driver");
 		ds.setUrl("jdbc:h2:tcp://localhost/~/NIITDB");
 		ds.setUsername("sa");
 		ds.setPassword("sa");
+		//ds.addConnectionProperty("hibernate.dialect","org.hibernate.dialect.H2Dialect");
 		return ds;
 	}
 	
 	private Properties getHibernateProperties()
 	{
 		Properties p=new Properties();
-		p.put("hibernate.show_sql","true");
 		p.put("hibernate.dialect","org.hibernate.dialect.H2Dialect");
-	//	p.put("hibernate.hbm2ddl.auto","update");
+		p.put("hibernate.show_sql","true");
+	
+		p.put("hibernate.hbm2ddl.auto","update");
+		
 		return p;
 	}
 	
 	@Autowired
 	@Bean(name="sessionFactory")
-	public SessionFactory getSessionFactory(DataSource datasource)
+	public SessionFactory getSessionFactory(DataSource dataSource)
 	{
-		LocalSessionFactoryBuilder sessionBuilder=new LocalSessionFactoryBuilder(datasource);
+		LocalSessionFactoryBuilder sessionBuilder=new LocalSessionFactoryBuilder(dataSource);
 		sessionBuilder.addProperties(getHibernateProperties());
-		sessionBuilder.addAnnotatedClass(User.class);
-	//	sessionBuilder.addAnnotatedClass(Category.class);
-		//sessionBuilder.scanPackages("com.niit");
-		return sessionBuilder.buildSessionFactory();
+		sessionBuilder.scanPackages("com.niit");
+		SessionFactory sf= sessionBuilder.buildSessionFactory();
+		return sf;
 	}
 	
 	@Autowired
@@ -66,10 +69,4 @@ public class ApplicationContextConfig
 		return tm;
 	}
 	
-/*@Autowired
-	@Bean(name="userDAO")
-	public UserDAO getUserDAO(SessionFactory sessionFactory)
-	{
-		return new UserDAOImpl(sessionFactory);
-	} */
 }

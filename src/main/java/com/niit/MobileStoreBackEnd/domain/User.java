@@ -16,7 +16,6 @@ public class User
 	
 	//define which is the primary key
 	@Id
-	@Column
 	private String id;
 	
 	@Column(name="name")  //if the field name in table and property name in class is different, column name needs to be specified

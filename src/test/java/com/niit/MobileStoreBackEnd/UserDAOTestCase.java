@@ -19,8 +19,6 @@ public class UserDAOTestCase
 	@Autowired 
 	static UserDAO userDAO;
 	
-    
-	
 	//The above objects need to be initilialised
 	
 	//This method will be executed before calling any one of the test cases and only once
@@ -30,22 +28,15 @@ public class UserDAOTestCase
 	{
 		context=new AnnotationConfigApplicationContext();
 		context.scan("com.niit.MobileStoreBackEnd");
-		context.refresh();
-		
-		//get the user from context
-		
+		context.refresh();		
 		user=(User)context.getBean("user");
-		//get userDAO from context
-		
 		userDAO=(UserDAO) context.getBean("userDAO");
-		
-		
 	}
 	
 	@Test
 	public void createUserTestCase()
 	{
-		user.setId("29");
+		user.setId("30");
 		user.setName("Pratik");
 		user.setPassword("123456");
 		user.setRole("admin");

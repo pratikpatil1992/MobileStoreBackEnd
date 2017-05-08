@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.niit.MobileStoreBackEnd.dao.CategoryDAO;
 import com.niit.MobileStoreBackEnd.domain.Category;
 
-//@Repository("categoryDAO")     //to create singleton instance
+@Repository("categoryDAO")     //to create singleton instance
 @Transactional
 public class CategoryDAOImpl implements CategoryDAO
 {
