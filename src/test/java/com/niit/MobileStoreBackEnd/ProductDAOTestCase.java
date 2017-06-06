@@ -29,11 +29,11 @@ public class ProductDAOTestCase
 	@Test
 	public void createProductTestCase()
 	{
-		product.setId("motog2");
-		product.setName("Moto G2");
-		product.setDescription("Moto G2");
-		product.setPrice("10,000");
-		product.setCategory_id("motog2");
+		product.setId("motog3");
+		product.setName("Moto G3");
+		product.setDescription("Moto G3");
+		product.setPrice(10000);
+		product.setCategory_id("motog3");
 		product.setSupplier_id("moto supplier");
 		boolean flag=productDAO.save(product);
 		

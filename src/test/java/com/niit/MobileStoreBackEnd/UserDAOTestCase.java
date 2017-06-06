@@ -36,7 +36,7 @@ public class UserDAOTestCase
 	@Test
 	public void createUserTestCase()
 	{
-		user.setId("30");
+		user.setUsername("pratikpatil");
 		user.setName("Pratik");
 		user.setPassword("123456");
 		user.setRole("admin");

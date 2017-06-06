@@ -4,8 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table
@@ -23,7 +25,7 @@ public class Product
 	private String description;
 	
 	@Column
-	private String price;
+	private double price;
 	
 	@Column
 	private String category_id;
@@ -31,6 +33,24 @@ public class Product
 	@Column
 	private String supplier_id;
 	
+	@Column
+	private String imagepath;
+	
+	@Transient
+	private MultipartFile file; 
+	
+	public String getImagepath() {
+		return imagepath;
+	}
+	public void setImagepath(String imagepath) {
+		this.imagepath = imagepath;
+	}
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 	public String getId() {
 		return id;
 	}
@@ -49,10 +69,10 @@ public class Product
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getPrice() {
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice(String price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	public String getCategory_id() {
@@ -67,5 +87,4 @@ public class Product
 	public void setSupplier_id(String supplier_id) {
 		this.supplier_id = supplier_id;
 	}
-	
 }

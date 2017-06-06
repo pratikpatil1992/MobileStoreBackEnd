@@ -1,16 +1,9 @@
 package com.niit.MobileStoreBackEnd.domain;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
-import org.springframework.stereotype.Component;
-
-@Component
-@Entity
-@Table
-public class Cart 
+public class Orders
 {
 	@Id
 	private int id;
@@ -77,5 +70,4 @@ public class Cart
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
 }

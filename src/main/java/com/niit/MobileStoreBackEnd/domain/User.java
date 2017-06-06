@@ -13,16 +13,37 @@ import org.springframework.stereotype.Component;
 @Component
 public class User 
 {
-	
 	//define which is the primary key
 	@Id
-	private String id;
+	private String username;
 	
-	@Column(name="name")  //if the field name in table and property name in class is different, column name needs to be specified
-	
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	@Column  
 	private String name;
+
 	@Column
 	private String role;
+	
+	@Column
+	private String mail;
+	
+	@Column
+	private String phone;
 	
 	@Min(5)
 	@Max(15)
@@ -45,13 +66,12 @@ public class User
 		this.password = password;
 	}
 
-
-	public String getId() {
-		return id;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getName() {

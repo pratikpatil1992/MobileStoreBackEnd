@@ -9,6 +9,10 @@ public interface CartDAO
 	public List<Cart> list();
 	public boolean save(Cart cart);
 	public boolean update(Cart cart);
-	public boolean empty(String id);
-	public Cart getCartById(String id);
+	public boolean delete(int id);
+	public Cart getCartById(int id);
+	public Cart deleteCartByUsername(String username);
+	public int getMaxId();
+	public double getTotalAmount(String id);
+	public Integer getQuantity(String userID, String productName);
 }

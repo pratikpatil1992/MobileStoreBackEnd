@@ -23,7 +23,7 @@ public class UserDAOImpl implements UserDAO
 	
 	public boolean save(User user) 
 	{
-		System.out.println("hi");
+		System.out.println("Hi");
 		try
 		{
 			Session session =sessionFactory.openSession();
@@ -56,10 +56,10 @@ public class UserDAOImpl implements UserDAO
 		return true;
 	}
 
-	public boolean validate(String id, String password)
+	public boolean validate(String username, String password)
 	{
-		Query query=sessionFactory.getCurrentSession().createQuery("from User where id=? and password=?");
-		query.setString(0,id);     //index starts from zero => will get an exception once
+		Query query=sessionFactory.getCurrentSession().createQuery("from User where username=? and password=?");
+		query.setString(0,username);     //index starts from zero => will get an exception once
 		query.setString(1,password);
 		//in the user table, with this id and password, there will be one or zero records
 		//i.e. unique result method will return object if a row exists, or else null
@@ -73,9 +73,9 @@ public class UserDAOImpl implements UserDAO
 		return sessionFactory.getCurrentSession().createQuery("from user").list();
 	}
 	
-	public User get(String id) 
+	public User get(String username) 
 	{
-		return (User)sessionFactory.getCurrentSession().get(User.class,id);
+		return (User)sessionFactory.getCurrentSession().get(User.class,username);
 	}
 	
 }

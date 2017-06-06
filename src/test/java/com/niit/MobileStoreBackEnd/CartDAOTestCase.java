@@ -2,8 +2,6 @@ package com.niit.MobileStoreBackEnd;
 
 import static org.junit.Assert.*;
 
-import java.util.List;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +29,12 @@ public class CartDAOTestCase
 	@Test
 	public void createCartTestCase()
 	{
-		cart.setId("30");
-		cart.setUser_id("Pratik");
-		cart.setDate_added("24/09/1992");
+		cart.setId(1);
+		cart.setUsername("pratikpatil");
 		cart.setProduct_Id("1");
-		cart.setQuantity("2");
+		cart.setQuantity(1);
+		cart.setProduct_Name("Moto G2");
+		cart.setPrice(10000);
 		boolean flag=cartDAO.save(cart);
 		
 	    //assertEquals method
