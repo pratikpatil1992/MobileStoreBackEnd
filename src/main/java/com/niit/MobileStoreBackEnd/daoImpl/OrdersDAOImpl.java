@@ -2,6 +2,7 @@ package com.niit.MobileStoreBackEnd.daoImpl;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,13 @@ public class OrdersDAOImpl implements OrdersDAO
 		}
 		return true;
 	}
-	
+	public int getMaxId()
+	{
+		SQLQuery query= sessionFactory.getCurrentSession().createSQLQuery("select max(id) from Orders");
+		Integer maxid= (Integer)query.list().get(0);
+		if (maxid==null)
+			return 0;
+		else
+			return maxid;
+	}
 }

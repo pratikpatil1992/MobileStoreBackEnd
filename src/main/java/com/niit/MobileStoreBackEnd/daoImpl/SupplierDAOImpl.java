@@ -48,7 +48,16 @@ import com.niit.MobileStoreBackEnd.domain.Supplier;
 
 		public boolean update(Supplier supplier) 
 		{
-			return false;
+			try
+			{
+				getCurrentSession().update(supplier);
+			} 
+			catch (Exception e)
+			{
+				e.printStackTrace();
+				return false;
+			}
+			return true;
 		}
 
 		public boolean delete(String id) 	

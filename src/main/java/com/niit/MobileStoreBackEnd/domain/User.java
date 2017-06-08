@@ -45,6 +45,9 @@ public class User
 	@Column
 	private String phone;
 	
+	@Column
+	private String address;
+	
 	@Min(5)
 	@Max(15)
 	@Column
@@ -52,6 +55,14 @@ public class User
 	
 	public String getRole() {
 		return role;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public void setRole(String role) {

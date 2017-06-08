@@ -16,11 +16,11 @@ public class Cart
 	private int id;
 	
 	@Column
-	private double quantity;
+	private int quantity;
 	
 	@Column
 	private String product_Id;
-
+	
 	@Column
 	private String username;
 	
@@ -70,7 +70,7 @@ public class Cart
 		this.product_Id = product_Id;
 	}
 
-	public double getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
 

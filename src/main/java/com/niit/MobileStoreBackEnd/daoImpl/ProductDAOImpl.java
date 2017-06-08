@@ -22,6 +22,12 @@ import com.niit.MobileStoreBackEnd.domain.Product;
 @Transactional
 public class ProductDAOImpl implements ProductDAO
 {
+	@Override
+	public List<Product> getProductByCategoryId(String id)
+	{
+		return getCurrentSession().createQuery("from Product where category_id=?").setString(0,id).list();
+	}
+
 	@Autowired private SessionFactory sessionFactory;	
 	public ProductDAOImpl(SessionFactory sessionFactory)
 	{

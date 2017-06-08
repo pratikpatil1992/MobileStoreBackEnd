@@ -43,9 +43,9 @@ public class CartDAOImpl implements CartDAO
 		return sessionFactory.getCurrentSession();
 	}
 		
-	public List<Cart> list()
+	public List<Cart> list(String username)
 	{
-		return sessionFactory.getCurrentSession().createQuery("from Cart").list();
+		return sessionFactory.getCurrentSession().createQuery("from Cart where username=?").setParameter(0,username).list();
 	}
 		
 	public boolean save(Cart cart)
@@ -87,16 +87,23 @@ public class CartDAOImpl implements CartDAO
 		log.debug("Starting of the method getTotalAmount");
 		String hql = "select sum(price*quantity) from Cart where username=" + "'" + username + "' " ;
 		log.debug("hql" + hql);
-
+		Double d;
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		log.debug("Ending of the method getTotalAmount");
-		return (double) query.uniqueResult();
+		d=(Double)query.uniqueResult();
+		if(d==null)
+			return 0;
+		else 
+			return d;
 	}
 	
 	@Transactional
-	public Cart deleteCartByUsername(String username) 
+	public boolean deleteCartByUsername(String username) 
 	{
-		return null;
+		String hql="delete from Cart where username='"+username+"'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.executeUpdate();
+		return true;
 	}
 
 	@Transactional

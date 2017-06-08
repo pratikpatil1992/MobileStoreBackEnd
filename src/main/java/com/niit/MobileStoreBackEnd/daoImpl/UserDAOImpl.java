@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +19,19 @@ import com.niit.MobileStoreBackEnd.domain.User;
 public class UserDAOImpl implements UserDAO
 {
 	
+	@Override
+	public String getAddressByUsername(String username)
+	{
+		SQLQuery query= sessionFactory.getCurrentSession().createSQLQuery("select address from User where username=?");
+		query.setString(0,username);
+		return (String)query.uniqueResult();
+	}
+
 	@Autowired
 	private SessionFactory sessionFactory;
 	
 	public boolean save(User user) 
 	{
-		System.out.println("Hi");
 		try
 		{
 			Session session =sessionFactory.openSession();
@@ -39,9 +47,6 @@ public class UserDAOImpl implements UserDAO
 		return true;
 	}
 	
-	
-	//"save" method updates a record in User table
-	//if the record is updated successfully, return true, else false
 	public boolean update(User user) 
 	{
 		try

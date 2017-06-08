@@ -1,15 +1,22 @@
 package com.niit.MobileStoreBackEnd.domain;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
+@Entity
+@Table
+@Component
 public class Orders
 {
 	@Id
 	private int id;
 	
 	@Column
-	private double quantity;
+	private int quantity;
 	
 	@Column
 	private String product_Id;
@@ -63,7 +70,7 @@ public class Orders
 		this.product_Id = product_Id;
 	}
 
-	public double getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
 
